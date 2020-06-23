@@ -39,6 +39,13 @@ def caps(update, context):
 caps_handler = CommandHandler('caps', caps)
 dispatcher.add_handler(caps_handler)
 
+def tofrench(update, context):
+    text_french = 'Omelette au fromage!'
+    context.bot.send_message(chat_id=update.effective_chat.id, text=text_french)
+
+tofrench_handler = CommandHandler('tofrench', tofrench)
+dispatcher.add_handler(tofrench_handler)
+
 def inline_caps(update, context):
     query = update.inline_query.query
     if not query:
