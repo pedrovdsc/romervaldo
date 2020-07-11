@@ -67,21 +67,26 @@ dispatcher.add_handler(caps_handler)
 ## TO LANGUAGE FUNCTIONS ##
 
 def tofrench(update, context):
+    replied_message = update.message.reply_to_message
+    
     text_french = 'Omelette au fromage!'
-    if context.args == []:
+    if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Tu es bête?")
         return
-    context.bot.send_message(chat_id=update.effective_chat.id, text=text_french)
+    update.message.reply_text(text=text_french)
+    #context.bot.send_message(chat_id=update.effective_chat.id, text=text_french)
 
 tofrench_handler = CommandHandler('tofrench', tofrench)
 dispatcher.add_handler(tofrench_handler)
 
 def toitalian(update, context):
+    replied_message = update.message.reply_to_message
     text_italian = 'Gli uomini scrivono nello zucchero'
-    if context.args == []:
+    if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Sei stupido?")
         return
-    context.bot.send_message(chat_id=update.effective_chat.id, text=text_italian)
+    update.message.reply_text(text=text_italian)
+    #context.bot.send_message(chat_id=update.effective_chat.id, text=text_italian)
 
 toitalian_handler = CommandHandler('toitalian', toitalian)
 dispatcher.add_handler(toitalian_handler)
