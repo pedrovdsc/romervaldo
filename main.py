@@ -64,6 +64,8 @@ def caps(update, context):
 caps_handler = CommandHandler('caps', caps)
 dispatcher.add_handler(caps_handler)
 
+## TO LANGUAGE FUNCTIONS ##
+
 def tofrench(update, context):
     text_french = 'Omelette au fromage!'
     if context.args == []:
@@ -73,6 +75,18 @@ def tofrench(update, context):
 
 tofrench_handler = CommandHandler('tofrench', tofrench)
 dispatcher.add_handler(tofrench_handler)
+
+def toitalian(update, context):
+    text_italian = 'Gli uomini scrivono nello zucchero'
+    if context.args == []:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Sei stupido?")
+        return
+    context.bot.send_message(chat_id=update.effective_chat.id, text=text_italian)
+
+toitalian_handler = CommandHandler('toitalian', toitalian)
+dispatcher.add_handler(toitalian_handler)
+
+## END OF TO LANGUAGE FUNCTIONS ##
 
 def inline_caps(update, context):
     query = update.inline_query.query
@@ -92,7 +106,7 @@ inline_caps_handler = InlineQueryHandler(inline_caps)
 dispatcher.add_handler(inline_caps_handler)
 
 def unknown(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, I didn't understand that command.")
+    context.bot.send_message(chat_id=update.effective_chat.id, text="Repete aí, doido. Entendi não.")
 
 unknown_handler = MessageHandler(Filters.command, unknown)
 dispatcher.add_handler(unknown_handler)
