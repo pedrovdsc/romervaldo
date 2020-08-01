@@ -66,9 +66,21 @@ dispatcher.add_handler(caps_handler)
 
 ## TO LANGUAGE FUNCTIONS ##
 
+def toportuguese(update, context):
+    replied_message = update.message.reply_to_message
+    pprint(replied_message)
+    if replied_message.text == '':
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Doido, tem nada pra traduzir aqui não.")
+        return
+    translated = translator.translate(replied_message.text, dest='pt')
+    update.message.reply_text(text=translated.text)
+
+toportuguese_handler = CommandHandler('topt', toportuguese)
+dispatcher.add_handler(toportuguese_handler)
+
 def tofrench(update, context):
     replied_message = update.message.reply_to_message
-    
+    pprint(replied_message)
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Tu es bête?")
         return
@@ -80,7 +92,7 @@ dispatcher.add_handler(tofrench_handler)
 
 def toitalian(update, context):
     replied_message = update.message.reply_to_message
-    
+    pprint(replied_message)
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Sei stupido?")
         return
@@ -92,7 +104,7 @@ dispatcher.add_handler(toitalian_handler)
 
 def tojapanese(update, context):
     replied_message = update.message.reply_to_message
-    
+    pprint(replied_message)
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="馬鹿")
         return
@@ -104,7 +116,7 @@ dispatcher.add_handler(tojapanese_handler)
 
 def togerman(update, context):
     replied_message = update.message.reply_to_message
-    
+    pprint(replied_message)
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Dumm!")
         return
