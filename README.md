@@ -1,6 +1,8 @@
 # romervaldo
-
-Time composto por:
+## Lider do projeto e criador:
 Pedro Custódio
-Arthur Lorencini @mrtuckie
+
+### Integrantes do time:
+Arthur Lorencini (@mrtuckie)
 Raquel Perim
+João Victor Nunes
