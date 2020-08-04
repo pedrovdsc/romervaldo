@@ -141,6 +141,19 @@ def togerman(update, context):
 togerman_handler = CommandHandler('toge', togerman)
 dispatcher.add_handler(togerman_handler)
 
+def toenglish(update, context):
+    replied_message = update.message.reply_to_message
+    debug_message(replied_message)
+    
+    if replied_message.text == '':
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Dumb! Give me something to translate.")
+        return
+    translated = translator.translate(replied_message.text, dest='en')
+    update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+
+toenglish_handler = CommandHandler('toen', toenglish)
+dispatcher.add_handler(toenglish_handler)
+
 
 ## END OF TO LANGUAGE FUNCTIONS ##
 
