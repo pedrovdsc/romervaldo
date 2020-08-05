@@ -1,12 +1,12 @@
 # romervaldo - Bot do Telegram que ajuda a traduzir coisas no grupo do telegram de Duolingo.
 ## Lider do projeto e criador:
-* Pedro Custódio
+* Pedro Custódio (@pedrovdsc)
 
 ### Integrantes do time:
 
 * Arthur Lorencini (@mrtuckie)
-* Raquel Perim
-* João Victor Nunes
+* Maiky Barreto (@maikybarreto)
+* João Victor Nunes (@joaonunes95)
 
 #### Recursos utilizados:
 
