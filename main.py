@@ -21,6 +21,9 @@ TOKEN = sys.argv[1]
 updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
+#faz a configuração do log
+log.basicConfig(filename = 'log_comandos.log', filemode = 'w', level = log.INFO, format = '%(message)s;%(asctime)s', datefmt='%d/%m/%Y')
+
 translator = Translator()
 
 def debug_message(message):
@@ -63,6 +66,7 @@ def toportuguese(update, context):
         return
     translated = translator.translate(replied_message.text, dest='pt')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    log.info('topt')
 
 toportuguese_handler = CommandHandler('topt', toportuguese)
 dispatcher.add_handler(toportuguese_handler)
@@ -77,6 +81,7 @@ def tofrench(update, context):
         return
     translated = translator.translate(replied_message.text, dest='fr')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    log.info('tofr')
 
 tofrench_handler = CommandHandler('tofr', tofrench)
 dispatcher.add_handler(tofrench_handler)
@@ -90,6 +95,7 @@ def toitalian(update, context):
         return
     translated = translator.translate(replied_message.text, dest='it')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    log.info('toit')
 
 toitalian_handler = CommandHandler('toit', toitalian)
 dispatcher.add_handler(toitalian_handler)
@@ -103,6 +109,7 @@ def tojapanese(update, context):
         return
     translated = translator.translate(replied_message.text, dest='ja')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    log.info('tojp')
 
 tojapanese_handler = CommandHandler('toja', tojapanese)
 dispatcher.add_handler(tojapanese_handler)
@@ -116,6 +123,7 @@ def togerman(update, context):
         return
     translated = translator.translate(replied_message.text, dest='de')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    log.info('tode')
 
 togerman_handler = CommandHandler('toge', togerman)
 dispatcher.add_handler(togerman_handler)
@@ -129,6 +137,7 @@ def toenglish(update, context):
         return
     translated = translator.translate(replied_message.text, dest='en')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    log.info('toen')
 
 toenglish_handler = CommandHandler('toen', toenglish)
 dispatcher.add_handler(toenglish_handler)
