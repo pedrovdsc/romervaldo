@@ -16,21 +16,14 @@ import time
 import sys
 from pprint import pprint
 
-# Aqui o token é atribuido para uma string que é chamada na execução do comando
-# na linha de comando do terminal $ python main.py (token em algum lugar remoto)
-
 TOKEN = sys.argv[1]
 
-
-# Aqui, a função do uptader deve atenticar e usar o bot
 updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
 translator = Translator()
 
 def debug_message(message):
-    ''' função de debug que aparece no computador do pedro para ele debugar
-    '''
     print('####################################')
     print(message.date)
     print(f'username: {message.from_user.username}')
@@ -48,40 +41,12 @@ start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
 
 updater.start_polling()
-
-# def echo(update, context):
-#     context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text)
-
-# def echo(update, context):
-#     """Echo the user message."""
-#     pprint('########################')
-#     pprint(update.message.chat.username)
-#     pprint(update.message.chat.id)
-#     pprint('-----------------------')
-#     pprint(update.message.reply_to_message)
-#     pprint('########################')
-#     update.message.reply_text(update.message.text)
-
-# echo_handler = MessageHandler(Filters.text & (~Filters.command), echo)
-# dispatcher.add_handler(echo_handler)
-
+# FUNCTION TO PUT LETTERS IN CAPS
 def caps(update, context):
     print(context.args)
     print(len(context.args))
-    #text_caps = ' '.join(context.args).upper()
     replied_message = update.message.reply_to_message
     text_caps = replied_message.text.upper()
-    # pprint('########################')
-    # pprint(update.message.chat.username)
-    # pprint(update.message.chat.id)
-    # pprint('-----------------------')
-    # pprint(update.message.reply_markup)
-    # pprint('-----------------------')
-    # pprint(dir(update.message.reply_markdown_v2))
-    # pprint('-----------------------')
-    # pprint(dir(update.message.reply_markdown))
-    # pprint('########################')
-    #update.message.reply_text(update.message.text)
     context.bot.send_message(chat_id=update.effective_chat.id, text=text_caps)
 
 caps_handler = CommandHandler('caps', caps)
@@ -89,7 +54,8 @@ dispatcher.add_handler(caps_handler)
 
 ## TO LANGUAGE FUNCTIONS ##
 
-def to_portuguese(update, context):
+# FUNCTION TO TRANSLATE TO BRAZILLIAN PORTUGUESE
+def toportuguese(update, context):
     replied_message = update.message.reply_to_message
     debug_message(replied_message)
     if replied_message.text == '':
@@ -98,10 +64,12 @@ def to_portuguese(update, context):
     translated = translator.translate(replied_message.text, dest='pt')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
 
-to_portuguese_handler = CommandHandler('topt', to_portuguese)
-dispatcher.add_handler(to_portuguese_handler)
+toportuguese_handler = CommandHandler('topt', toportuguese)
+dispatcher.add_handler(toportuguese_handler)
 
-def to_french(update, context):
+# FUNCTION TO TRANSLATE TO FRENCH
+
+def tofrench(update, context):
     replied_message = update.message.reply_to_message
     debug_message(replied_message)
     
@@ -111,9 +79,10 @@ def to_french(update, context):
     translated = translator.translate(replied_message.text, dest='fr')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
 
-to_french_handler = CommandHandler('tofr', to_french)
-dispatcher.add_handler(to_french_handler)
+tofrench_handler = CommandHandler('tofr', tofrench)
+dispatcher.add_handler(tofrench_handler)
 
+# FUNCTION TO TRANSLATE TO ITALIAN
 def toitalian(update, context):
     replied_message = update.message.reply_to_message
     debug_message(replied_message)
@@ -127,6 +96,7 @@ def toitalian(update, context):
 toitalian_handler = CommandHandler('toit', toitalian)
 dispatcher.add_handler(toitalian_handler)
 
+# FUNCTION TO TRANSLATE TO JAPANESE
 def tojapanese(update, context):
     replied_message = update.message.reply_to_message
     debug_message(replied_message)
@@ -140,6 +110,7 @@ def tojapanese(update, context):
 tojapanese_handler = CommandHandler('toja', tojapanese)
 dispatcher.add_handler(tojapanese_handler)
 
+# FUNCTION TO TRANSLATE TO GERMAN
 def togerman(update, context):
     replied_message = update.message.reply_to_message
     debug_message(replied_message)
@@ -153,6 +124,7 @@ def togerman(update, context):
 togerman_handler = CommandHandler('toge', togerman)
 dispatcher.add_handler(togerman_handler)
 
+# FUNCTION TO TRANSLATE TO ENGLISH
 def toenglish(update, context):
     replied_message = update.message.reply_to_message
     debug_message(replied_message)
@@ -189,6 +161,7 @@ dispatcher.add_handler(inline_caps_handler)
 ## Telegram Bot functions ##
 ## 1) /commands
 ## 2) /start
+## BOT COMMANDS TO TRANSLATE JP,EN,FR,GE,PT-BR,ITA
 
 # def commands(update, context):
 #     replied_message = update.message.reply_to_message
