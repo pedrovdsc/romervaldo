@@ -21,8 +21,7 @@ TOKEN = sys.argv[1]
 updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
-#faz a configuração do log
-log.basicConfig(filename = 'log_comandos.log', filemode = 'a', level = log.INFO, format = '%(message)s;%(asctime)s', datefmt='%d/%m/%Y')
+logging.basicConfig(filename = 'log_comandos.log', filemode = 'a', level = log.INFO, format = '%(message)s;%(asctime)s', datefmt='%d/%m/%Y')
 
 translator = Translator()
 
@@ -38,8 +37,9 @@ def debug_message(message):
     print('####################################')
 
 def start(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Salve, eu sou o\
-        Romervaldo e estou aqui para te ajudar a traduzir.")
+    context.bot.send_message(chat_id=update.effective_chat.id, text="Salve! Eu sou o\
+    Romervaldo \U0001F916 \U0001F30E e estou aqui para te ajudar a aprender idiomas!\
+        \nFeito por Pedro, Arthur, Maiky e Nunes. Todos bonitos de coração.")
 
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
@@ -52,6 +52,7 @@ def caps(update, context):
     replied_message = update.message.reply_to_message
     text_caps = replied_message.text.upper()
     context.bot.send_message(chat_id=update.effective_chat.id, text=text_caps)
+    logging.info('caps')
 
 caps_handler = CommandHandler('caps', caps)
 dispatcher.add_handler(caps_handler)
@@ -62,13 +63,12 @@ dispatcher.add_handler(caps_handler)
 def toportuguese(update, context):
     replied_message = update.message.reply_to_message
     debug_message(replied_message)
-
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Doido, tem nada pra traduzir aqui não.")
         return
     translated = translator.translate(replied_message.text, dest='pt')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
-    log.info('topt')
+    logging.info('topt')
 
 toportuguese_handler = CommandHandler('topt', toportuguese)
 dispatcher.add_handler(toportuguese_handler)
@@ -84,7 +84,7 @@ def tofrench(update, context):
         return
     translated = translator.translate(replied_message.text, dest='fr')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
-    log.info('tofr')
+    logging.info('tofr')
 
 tofrench_handler = CommandHandler('tofr', tofrench)
 dispatcher.add_handler(tofrench_handler)
@@ -99,7 +99,7 @@ def toitalian(update, context):
         return
     translated = translator.translate(replied_message.text, dest='it')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
-    log.info('toit')
+    logging.info('toit')
 
 toitalian_handler = CommandHandler('toit', toitalian)
 dispatcher.add_handler(toitalian_handler)
@@ -114,7 +114,7 @@ def tojapanese(update, context):
         return
     translated = translator.translate(replied_message.text, dest='ja')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
-    log.info('tojp')
+    logging.info('toja')
 
 tojapanese_handler = CommandHandler('toja', tojapanese)
 dispatcher.add_handler(tojapanese_handler)
@@ -129,7 +129,7 @@ def togerman(update, context):
         return
     translated = translator.translate(replied_message.text, dest='de')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
-    log.info('tode')
+    logging.info('toge')
 
 togerman_handler = CommandHandler('toge', togerman)
 dispatcher.add_handler(togerman_handler)
@@ -144,7 +144,7 @@ def toenglish(update, context):
         return
     translated = translator.translate(replied_message.text, dest='en')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
-    log.info('toen')
+    logging.info('toen')
 
 toenglish_handler = CommandHandler('toen', toenglish)
 dispatcher.add_handler(toenglish_handler)
@@ -174,15 +174,14 @@ dispatcher.add_handler(inline_caps_handler)
 ## 2) /start
 
 def commands(update, context):
-    list_commands = "/commands - Exibe a lista de comandos;\
+    list_commands = "/commands - Exibe esta lista de comandos;\
         \n/start - Exibe a saudação inicial;\
         \n/toja - Traduz a frase para o japonês;\
         \n/toen - Traduz a frase para o inglês;\
         \n/tofr - Traduz a frase para o francês;\
         \n/toal - Traduz a frase para o alemão;\
         \n/topt - Traduz a frase para o português\
-        \n/caps - FICA TUDO EM CAPSLOCK.
-        "
+        \n/caps - FICA TUDO EM CAPSLOCK."
 
     context.bot.send_message(chat_id=update.effective_chat.id, text=list_commands)
 
@@ -191,7 +190,7 @@ commands_handler = CommandHandler('commands', commands)
 dispatcher.add_handler(commands_handler)
 
 def unknown(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Repete aí, doido. Entendi não.")
+    context.bot.send_message(chat_id=update.effective_chat.id, text="Repete aí, ser humano. Entendi não.")
 
 unknown_handler = MessageHandler(Filters.command, unknown)
 dispatcher.add_handler(unknown_handler)
