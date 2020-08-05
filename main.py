@@ -35,7 +35,8 @@ def debug_message(message):
     print('####################################')
 
 def start(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
+    context.bot.send_message(chat_id=update.effective_chat.id, text="Salve, eu sou o\
+        Romervaldo e estou aqui para te ajudar a traduzir.")
 
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
@@ -161,26 +162,23 @@ dispatcher.add_handler(inline_caps_handler)
 ## Telegram Bot functions ##
 ## 1) /commands
 ## 2) /start
-## BOT COMMANDS TO TRANSLATE JP,EN,FR,GE,PT-BR,ITA
 
-# def commands(update, context):
-#     replied_message = update.message.reply_to_message
-#     list_commands = "/commands - Exibe a lista de comandos;\
-#         \n/start - Exibe a saudação inicial;\
-#         \n/toja - Traduz a frase para o japonês;\
-#         \n/toen - Traduz a frase para o inglês;\
-#         \n/tofr - Traduz a frase para o francês;\
-#         \n/toal - Traduz a frase para o alemão;\
-#         \n/topt - Traduz a frase para o português\
-#         \n/caps - FICA TUDO EM CAPSLOCK.
-#         "
+def commands(update, context):
+    list_commands = "/commands - Exibe a lista de comandos;\
+        \n/start - Exibe a saudação inicial;\
+        \n/toja - Traduz a frase para o japonês;\
+        \n/toen - Traduz a frase para o inglês;\
+        \n/tofr - Traduz a frase para o francês;\
+        \n/toal - Traduz a frase para o alemão;\
+        \n/topt - Traduz a frase para o português\
+        \n/caps - FICA TUDO EM CAPSLOCK.
+        "
 
-#     context.bot.send_message(chat_id=update.effective_chat.id, text=list_commands)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=list_commands)
 
-# # Cria o handler para segurar o evento quando acontecer.
-# commands_handler = MessageHandler(Filters.command, commands)
-# dispatcher.add_handler(commands_handler)
-
+# Cria o handler para segurar o evento quando acontecer.
+commands_handler = CommandHandler('commands', commands)
+dispatcher.add_handler(commands_handler)
 
 def unknown(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Repete aí, doido. Entendi não.")
