@@ -1,3 +1,8 @@
+# Código feito por Pedro Custódio, Arthur Lorencini, Maiky Barreto, João Nunes. 
+
+
+# Importando os módulos importantes
+
 import telegram
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
@@ -11,14 +16,21 @@ import time
 import sys
 from pprint import pprint
 
+# Aqui o token é atribuido para uma string que é chamada na execução do comando
+# na linha de comando do terminal $ python main.py (token em algum lugar remoto)
+
 TOKEN = sys.argv[1]
 
+
+# Aqui, a função do uptader deve atenticar e usar o bot
 updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
 translator = Translator()
 
 def debug_message(message):
+    ''' função de debug que aparece no computador do pedro para ele debugar
+    '''
     print('####################################')
     print(message.date)
     print(f'username: {message.from_user.username}')
@@ -77,7 +89,7 @@ dispatcher.add_handler(caps_handler)
 
 ## TO LANGUAGE FUNCTIONS ##
 
-def toportuguese(update, context):
+def to_portuguese(update, context):
     replied_message = update.message.reply_to_message
     debug_message(replied_message)
     if replied_message.text == '':
@@ -86,10 +98,10 @@ def toportuguese(update, context):
     translated = translator.translate(replied_message.text, dest='pt')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
 
-toportuguese_handler = CommandHandler('topt', toportuguese)
-dispatcher.add_handler(toportuguese_handler)
+to_portuguese_handler = CommandHandler('topt', to_portuguese)
+dispatcher.add_handler(to_portuguese_handler)
 
-def tofrench(update, context):
+def to_french(update, context):
     replied_message = update.message.reply_to_message
     debug_message(replied_message)
     
@@ -99,8 +111,8 @@ def tofrench(update, context):
     translated = translator.translate(replied_message.text, dest='fr')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
 
-tofrench_handler = CommandHandler('tofr', tofrench)
-dispatcher.add_handler(tofrench_handler)
+to_french_handler = CommandHandler('tofr', to_french)
+dispatcher.add_handler(to_french_handler)
 
 def toitalian(update, context):
     replied_message = update.message.reply_to_message
@@ -192,8 +204,8 @@ def commands(update, context):
 
     context.bot.send_message(chat_id=update.effective_chat.id, text=list_commands)
 
-# Criando handlers para serem ativados quando alguém marcar ele numa mensagem.
-commands_handler = InlineQueryHandler(commands)
+# Cria o handler para segurar o evento quando acontecer.
+commands_handler = MessageHandler(Filters.command, commands)
 dispatcher.add_handler(commands_handler)
 
 
