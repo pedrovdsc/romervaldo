@@ -190,23 +190,23 @@ dispatcher.add_handler(inline_caps_handler)
 ## 1) /commands
 ## 2) /start
 
-def commands(update, context):
-    replied_message = update.message.reply_to_message
-    list_commands = "/commands - Exibe a lista de comandos;\
-        \n/start - Exibe a saudação inicial;\
-        \n/toja - Traduz a frase para o japonês;\
-        \n/toen - Traduz a frase para o inglês;\
-        \n/tofr - Traduz a frase para o francês;\
-        \n/toal - Traduz a frase para o alemão;\
-        \n/topt - Traduz a frase para o português\
-        \n/caps - FICA TUDO EM CAPSLOCK.
-        "
+# def commands(update, context):
+#     replied_message = update.message.reply_to_message
+#     list_commands = "/commands - Exibe a lista de comandos;\
+#         \n/start - Exibe a saudação inicial;\
+#         \n/toja - Traduz a frase para o japonês;\
+#         \n/toen - Traduz a frase para o inglês;\
+#         \n/tofr - Traduz a frase para o francês;\
+#         \n/toal - Traduz a frase para o alemão;\
+#         \n/topt - Traduz a frase para o português\
+#         \n/caps - FICA TUDO EM CAPSLOCK.
+#         "
 
-    context.bot.send_message(chat_id=update.effective_chat.id, text=list_commands)
+#     context.bot.send_message(chat_id=update.effective_chat.id, text=list_commands)
 
-# Cria o handler para segurar o evento quando acontecer.
-commands_handler = MessageHandler(Filters.command, commands)
-dispatcher.add_handler(commands_handler)
+# # Cria o handler para segurar o evento quando acontecer.
+# commands_handler = MessageHandler(Filters.command, commands)
+# dispatcher.add_handler(commands_handler)
 
 
 def unknown(update, context):
