@@ -36,7 +36,7 @@ def debug_message(message):
 
 def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Salve! Eu sou o\
-    Romervaldo \U01F916 1F30E e estou aqui para te ajudar a aprender idiomas!\
+    Romervaldo \U0001F916 \U0001F30E e estou aqui para te ajudar a aprender idiomas!\
         \nFeito por Pedro, Arthur, Maiky e Nunes. Todos bonitos de coração.")
 
 start_handler = CommandHandler('start', start)
