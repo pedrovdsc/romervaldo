@@ -171,8 +171,7 @@ def commands(update, context):
         \n/tofr - Traduz a frase para o francês;\
         \n/toal - Traduz a frase para o alemão;\
         \n/topt - Traduz a frase para o português\
-        \n/caps - FICA TUDO EM CAPSLOCK.
-        "
+        \n/caps - FICA TUDO EM CAPSLOCK."
 
     context.bot.send_message(chat_id=update.effective_chat.id, text=list_commands)
 
