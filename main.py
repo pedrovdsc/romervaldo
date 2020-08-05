@@ -37,7 +37,9 @@ def debug_message(message):
     print('####################################')
 
 def start(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
+    context.bot.send_message(chat_id=update.effective_chat.id, text="Salve! Eu sou o\
+    Romervaldo \U0001F916 \U0001F30E e estou aqui para te ajudar a aprender idiomas!\
+        \nFeito por Pedro, Arthur, Maiky e Nunes. Todos bonitos de coração.")
 
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
@@ -170,11 +172,9 @@ dispatcher.add_handler(inline_caps_handler)
 ## Telegram Bot functions ##
 ## 1) /commands
 ## 2) /start
-## BOT COMMANDS TO TRANSLATE JP,EN,FR,GE,PT-BR,ITA
 
 def commands(update, context):
-    replied_message = update.message.reply_to_message
-    list_commands = "/commands - Exibe a lista de comandos;\
+    list_commands = "/commands - Exibe esta lista de comandos;\
         \n/start - Exibe a saudação inicial;\
         \n/toja - Traduz a frase para o japonês;\
         \n/toen - Traduz a frase para o inglês;\
@@ -185,13 +185,12 @@ def commands(update, context):
 
     context.bot.send_message(chat_id=update.effective_chat.id, text=list_commands)
 
-# Criando handlers para serem ativados quando alguém marcar ele numa mensagem.
-commands_handler = InlineQueryHandler(commands)
+# Cria o handler para segurar o evento quando acontecer.
+commands_handler = CommandHandler('commands', commands)
 dispatcher.add_handler(commands_handler)
 
-
 def unknown(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Repete aí, doido. Entendi não.")
+    context.bot.send_message(chat_id=update.effective_chat.id, text="Repete aí, ser humano. Entendi não.")
 
 unknown_handler = MessageHandler(Filters.command, unknown)
 dispatcher.add_handler(unknown_handler)
