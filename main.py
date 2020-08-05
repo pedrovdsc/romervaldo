@@ -172,7 +172,7 @@ def commands(update, context):
         \n/toja - Traduz a frase para o japonês;\
         \n/toen - Traduz a frase para o inglês;\
         \n/tofr - Traduz a frase para o francês;\
-        \n/toal - Traduz a frase para o alemão;\
+        \n/toge - Traduz a frase para o alemão;\
         \n/topt - Traduz a frase para o português\
         \n/caps - FICA TUDO EM CAPSLOCK."
 
