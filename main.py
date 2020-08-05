@@ -174,6 +174,31 @@ def inline_caps(update, context):
 inline_caps_handler = InlineQueryHandler(inline_caps)
 dispatcher.add_handler(inline_caps_handler)
 
+## Telegram Bot functions ##
+## 1) /commands
+## 2) /start
+
+# Vou fazer ele responder o comentário de alguém.
+def list_commands(update, context):
+    query = update.inline_query.query
+    if not query:
+        return
+    results = list()
+    results.append(
+        InlineQueryResultArticle(
+            id=query.upper(),
+            title='list_commands',
+            input_message_content=InputTextMessageContent(query.upper())
+        )
+    )
+    # função que faz o bot responder a msg (provavelmente)
+    context.bot.answer_inline_query(update.inline_query.id, "vai tomar no cu")
+
+# Criando handlers para serem ativados quando alguém marcar ele numa mensagem.
+list_commands_handler = InlineQueryHandler(list_commands)
+dispatcher.add_handler(list_commands_handler)
+
+
 def unknown(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Repete aí, doido. Entendi não.")
 
