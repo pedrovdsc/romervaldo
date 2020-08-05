@@ -22,7 +22,7 @@ updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
 #faz a configuração do log
-log.basicConfig(filename = 'log_comandos.log', filemode = 'w', level = log.INFO, format = '%(message)s;%(asctime)s', datefmt='%d/%m/%Y')
+log.basicConfig(filename = 'log_comandos.log', filemode = 'a', level = log.INFO, format = '%(message)s;%(asctime)s', datefmt='%d/%m/%Y')
 
 translator = Translator()
 
