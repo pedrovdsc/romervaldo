@@ -178,25 +178,23 @@ dispatcher.add_handler(inline_caps_handler)
 ## 1) /commands
 ## 2) /start
 
-# Vou fazer ele responder o comentário de alguém.
-def list_commands(update, context):
-    query = update.inline_query.query
-    if not query:
-        return
-    results = list()
-    results.append(
-        InlineQueryResultArticle(
-            id=query.upper(),
-            title='list_commands',
-            input_message_content=InputTextMessageContent(query.upper())
-        )
-    )
-    # função que faz o bot responder a msg (provavelmente)
-    context.bot.answer_inline_query(update.inline_query.id, "vai tomar no cu")
+def commands(update, context):
+    replied_message = update.message.reply_to_message
+    list_commands = "/commands - Exibe a lista de comandos;\
+        \n/start - Exibe a saudação inicial;\
+        \n/toja - Traduz a frase para o japonês;\
+        \n/toen - Traduz a frase para o inglês;\
+        \n/tofr - Traduz a frase para o francês;\
+        \n/toal - Traduz a frase para o alemão;\
+        \n/topt - Traduz a frase para o português\
+        \n/caps - FICA TUDO EM CAPSLOCK.
+        "
+
+    context.bot.send_message(chat_id=update.effective_chat.id, text=list_commands)
 
 # Criando handlers para serem ativados quando alguém marcar ele numa mensagem.
-list_commands_handler = InlineQueryHandler(list_commands)
-dispatcher.add_handler(list_commands_handler)
+commands_handler = InlineQueryHandler(commands)
+dispatcher.add_handler(commands_handler)
 
 
 def unknown(update, context):
