@@ -21,6 +21,8 @@ TOKEN = sys.argv[1]
 updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
+logging.basicConfig(filename = 'log_comandos.log', filemode = 'a', level = logging.INFO, format = '%(message)s;%(asctime)s', datefmt='%d/%m/%Y')
+
 translator = Translator()
 
 def debug_message(message):
