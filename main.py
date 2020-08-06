@@ -45,8 +45,6 @@ dispatcher.add_handler(start_handler)
 updater.start_polling()
 # FUNCTION TO PUT LETTERS IN CAPS
 def caps(update, context):
-    print(context.args)
-    print(len(context.args))
     replied_message = update.message.reply_to_message
     text_caps = replied_message.text.upper()
     context.bot.send_message(chat_id=update.effective_chat.id, text=text_caps)
@@ -59,7 +57,7 @@ dispatcher.add_handler(caps_handler)
 # FUNCTION TO TRANSLATE TO BRAZILLIAN PORTUGUESE
 def toportuguese(update, context):
     replied_message = update.message.reply_to_message
-    debug_message(replied_message)
+    
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Doido, tem nada pra traduzir aqui não.")
         return
@@ -73,8 +71,7 @@ dispatcher.add_handler(toportuguese_handler)
 
 def tofrench(update, context):
     replied_message = update.message.reply_to_message
-    debug_message(replied_message)
-    
+        
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Tu es bête?")
         return
@@ -87,8 +84,7 @@ dispatcher.add_handler(tofrench_handler)
 # FUNCTION TO TRANSLATE TO ITALIAN
 def toitalian(update, context):
     replied_message = update.message.reply_to_message
-    debug_message(replied_message)
-    
+       
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Sei stupido?")
         return
@@ -101,8 +97,7 @@ dispatcher.add_handler(toitalian_handler)
 # FUNCTION TO TRANSLATE TO JAPANESE
 def tojapanese(update, context):
     replied_message = update.message.reply_to_message
-    debug_message(replied_message)
-    
+        
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="馬鹿")
         return
@@ -115,8 +110,7 @@ dispatcher.add_handler(tojapanese_handler)
 # FUNCTION TO TRANSLATE TO GERMAN
 def togerman(update, context):
     replied_message = update.message.reply_to_message
-    debug_message(replied_message)
-    
+        
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Dumm!")
         return
@@ -129,8 +123,7 @@ dispatcher.add_handler(togerman_handler)
 # FUNCTION TO TRANSLATE TO ENGLISH
 def toenglish(update, context):
     replied_message = update.message.reply_to_message
-    debug_message(replied_message)
-    
+        
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Dumb! Give me something to translate.")
         return
