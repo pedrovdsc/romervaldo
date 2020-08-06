@@ -22,6 +22,7 @@ updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
 logging.basicConfig(filename = 'log_comandos.log', filemode = 'a', level = logging.INFO, format = '%(message)s;%(asctime)s', datefmt='%d/%m/%Y')
+duolingo_id = -1001455037506
 
 translator = Translator()
 
@@ -50,6 +51,8 @@ def caps(update, context):
     replied_message = update.message.reply_to_message
     text_caps = replied_message.text.upper()
     context.bot.send_message(chat_id=update.effective_chat.id, text=text_caps)
+    if replied_message.chat.id == duolingo_id:
+        logging.info('caps')
 
 caps_handler = CommandHandler('caps', caps)
 dispatcher.add_handler(caps_handler)
@@ -65,6 +68,8 @@ def toportuguese(update, context):
         return
     translated = translator.translate(replied_message.text, dest='pt')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        logging.info('topt')
 
 toportuguese_handler = CommandHandler('topt', toportuguese)
 dispatcher.add_handler(toportuguese_handler)
@@ -79,6 +84,8 @@ def tofrench(update, context):
         return
     translated = translator.translate(replied_message.text, dest='fr')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        logging.info('tofr')
 
 tofrench_handler = CommandHandler('tofr', tofrench)
 dispatcher.add_handler(tofrench_handler)
@@ -92,6 +99,8 @@ def toitalian(update, context):
         return
     translated = translator.translate(replied_message.text, dest='it')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        logging.info('toit')
 
 toitalian_handler = CommandHandler('toit', toitalian)
 dispatcher.add_handler(toitalian_handler)
@@ -105,6 +114,8 @@ def tojapanese(update, context):
         return
     translated = translator.translate(replied_message.text, dest='ja')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        logging.info('toja')
 
 tojapanese_handler = CommandHandler('toja', tojapanese)
 dispatcher.add_handler(tojapanese_handler)
@@ -118,6 +129,8 @@ def togerman(update, context):
         return
     translated = translator.translate(replied_message.text, dest='de')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        logging.info('toge')
 
 togerman_handler = CommandHandler('toge', togerman)
 dispatcher.add_handler(togerman_handler)
@@ -131,6 +144,8 @@ def toenglish(update, context):
         return
     translated = translator.translate(replied_message.text, dest='en')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        logging.info('toen')
 
 toenglish_handler = CommandHandler('toen', toenglish)
 dispatcher.add_handler(toenglish_handler)
