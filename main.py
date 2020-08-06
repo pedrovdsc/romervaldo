@@ -21,6 +21,9 @@ TOKEN = sys.argv[1]
 updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
+logging.basicConfig(filename = 'log_comandos.log', filemode = 'a', level = logging.INFO, format = '%(message)s;%(asctime)s', datefmt='%d/%m/%Y')
+duolingo_id = -1001455037506
+
 translator = Translator()
 
 def debug_message(message):
@@ -45,26 +48,28 @@ dispatcher.add_handler(start_handler)
 updater.start_polling()
 # FUNCTION TO PUT LETTERS IN CAPS
 def caps(update, context):
-    print(context.args)
-    print(len(context.args))
     replied_message = update.message.reply_to_message
     text_caps = replied_message.text.upper()
     context.bot.send_message(chat_id=update.effective_chat.id, text=text_caps)
+    if replied_message.chat.id == duolingo_id:
+        logging.info('caps')
 
 caps_handler = CommandHandler('caps', caps)
 dispatcher.add_handler(caps_handler)
 
 ## TO LANGUAGE FUNCTIONS ##
 
-# FUNCTION TO TRANSLATE TO BRAZILLIAN PORTUGUESE
+# FUNCTION TO TRANSLATE TO BRAZILIAN PORTUGUESE
 def toportuguese(update, context):
     replied_message = update.message.reply_to_message
-    debug_message(replied_message)
+    
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Doido, tem nada pra traduzir aqui não.")
         return
     translated = translator.translate(replied_message.text, dest='pt')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        logging.info('topt')
 
 toportuguese_handler = CommandHandler('topt', toportuguese)
 dispatcher.add_handler(toportuguese_handler)
@@ -73,13 +78,14 @@ dispatcher.add_handler(toportuguese_handler)
 
 def tofrench(update, context):
     replied_message = update.message.reply_to_message
-    debug_message(replied_message)
-    
+        
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Tu es bête?")
         return
     translated = translator.translate(replied_message.text, dest='fr')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        logging.info('tofr')
 
 tofrench_handler = CommandHandler('tofr', tofrench)
 dispatcher.add_handler(tofrench_handler)
@@ -87,13 +93,14 @@ dispatcher.add_handler(tofrench_handler)
 # FUNCTION TO TRANSLATE TO ITALIAN
 def toitalian(update, context):
     replied_message = update.message.reply_to_message
-    debug_message(replied_message)
-    
+       
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Sei stupido?")
         return
     translated = translator.translate(replied_message.text, dest='it')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        logging.info('toit')
 
 toitalian_handler = CommandHandler('toit', toitalian)
 dispatcher.add_handler(toitalian_handler)
@@ -101,13 +108,14 @@ dispatcher.add_handler(toitalian_handler)
 # FUNCTION TO TRANSLATE TO JAPANESE
 def tojapanese(update, context):
     replied_message = update.message.reply_to_message
-    debug_message(replied_message)
-    
+        
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="馬鹿")
         return
     translated = translator.translate(replied_message.text, dest='ja')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        logging.info('toja')
 
 tojapanese_handler = CommandHandler('toja', tojapanese)
 dispatcher.add_handler(tojapanese_handler)
@@ -115,13 +123,14 @@ dispatcher.add_handler(tojapanese_handler)
 # FUNCTION TO TRANSLATE TO GERMAN
 def togerman(update, context):
     replied_message = update.message.reply_to_message
-    debug_message(replied_message)
-    
+        
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Dumm!")
         return
     translated = translator.translate(replied_message.text, dest='de')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        logging.info('toge')
 
 togerman_handler = CommandHandler('toge', togerman)
 dispatcher.add_handler(togerman_handler)
@@ -129,13 +138,14 @@ dispatcher.add_handler(togerman_handler)
 # FUNCTION TO TRANSLATE TO ENGLISH
 def toenglish(update, context):
     replied_message = update.message.reply_to_message
-    debug_message(replied_message)
-    
+        
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="Dumb! Give me something to translate.")
         return
     translated = translator.translate(replied_message.text, dest='en')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        logging.info('toen')
 
 toenglish_handler = CommandHandler('toen', toenglish)
 dispatcher.add_handler(toenglish_handler)
@@ -170,8 +180,9 @@ def commands(update, context):
         \n/toja - Traduz a frase para o japonês;\
         \n/toen - Traduz a frase para o inglês;\
         \n/tofr - Traduz a frase para o francês;\
-        \n/toal - Traduz a frase para o alemão;\
+        \n/toge - Traduz a frase para o alemão;\
         \n/topt - Traduz a frase para o português\
+        \n/toit - Traduz a frase para o italiano\
         \n/caps - FICA TUDO EM CAPSLOCK."
 
     context.bot.send_message(chat_id=update.effective_chat.id, text=list_commands)
