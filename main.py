@@ -59,7 +59,7 @@ dispatcher.add_handler(caps_handler)
 
 ## TO LANGUAGE FUNCTIONS ##
 
-# FUNCTION TO TRANSLATE TO BRAZILLIAN PORTUGUESE
+# FUNCTION TO TRANSLATE TO BRAZILIAN PORTUGUESE
 def toportuguese(update, context):
     replied_message = update.message.reply_to_message
     
@@ -180,8 +180,9 @@ def commands(update, context):
         \n/toja - Traduz a frase para o japonês;\
         \n/toen - Traduz a frase para o inglês;\
         \n/tofr - Traduz a frase para o francês;\
-        \n/toal - Traduz a frase para o alemão;\
+        \n/toge - Traduz a frase para o alemão;\
         \n/topt - Traduz a frase para o português\
+        \n/toit - Traduz a frase para o italiano\
         \n/caps - FICA TUDO EM CAPSLOCK."
 
     context.bot.send_message(chat_id=update.effective_chat.id, text=list_commands)
