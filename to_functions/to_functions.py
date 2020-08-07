@@ -5,6 +5,7 @@ from telegram.ext import MessageHandler, Filters
 from telegram import InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import InlineQueryHandler
 from googletrans import Translator
+from datetime import datetime
 
 import time
 import sys
@@ -13,9 +14,6 @@ from pprint import pprint
 duolingo_id = -1001455037506
 
 translator = Translator()
-
-translator = Translator()
-
 
 ## TO LANGUAGE FUNCTIONS ##
 
@@ -98,7 +96,7 @@ def toenglish(update, context):
 
 # ESTA FUNCAO SÓ ESTÁ AQUI PQ NÃO SEI IMPORTAR ELA DE OUTRA PASTA
 def write_log(funcao):
-    arquivo_log = open('log_comandos.txt','a')
-    arquivo_log.write(funcao+';'+time.strftime('%d/%m/%Y') +'\n')
-    arquivo_log.close()
+    now = datetime.now()
+    with open('log_comandos.txt', 'a') as f:
+        f.write(funcao+';'+now.strftime('%d/%m/%Y %H:%M') +'\n')
 
