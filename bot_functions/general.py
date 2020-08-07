@@ -44,3 +44,14 @@ def caps(update, context):
 def unknown(update, context):
     context.bot.send_message(
         chat_id=update.effective_chat.id, text="Repete aí, ser humano. Entendi não.")
+
+def relt(update, context):
+    file2 = open('log_comandos.txt', 'rb')
+    context.bot.send_message(chat_id=update.effective_chat.id, text="calma")
+    context.bot.send_document(chat_id=update.effective_chat.id, document = file2)
+
+def write_log(funcao):
+    arquivo_log = open('log_comandos.txt','a')
+    arquivo_log.write(funcao+time.strftime('%d/%m/%Y') +'\n')
+    arquivo_log.close()
+

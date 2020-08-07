@@ -12,7 +12,7 @@ from telegram.ext import InlineQueryHandler
 from googletrans import Translator
 
 from to_functions.to_functions import toenglish, tofrench, togerman, toitalian, tojapanese, toportuguese
-from bot_functions.general import caps, start, unknown, commands
+from bot_functions.general import caps, start, unknown, commands, relt
 
 import logging
 import time
@@ -24,7 +24,6 @@ TOKEN = sys.argv[1]
 updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
-logging.basicConfig(filename = 'log_comandos.log', filemode = 'a', level = logging.INFO, format = '%(message)s;%(asctime)s', datefmt='%d/%m/%Y')
 duolingo_id = -1001455037506
 
 translator = Translator()
@@ -53,6 +52,10 @@ dispatcher.add_handler(commands_handler)
 
 caps_handler = CommandHandler('caps', caps)
 dispatcher.add_handler(caps_handler)
+
+relt_handler = CommandHandler('relt', relt)
+dispatcher.add_handler(relt_handler)
+
 
 ## Language handlers ##
 

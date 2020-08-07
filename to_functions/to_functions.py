@@ -10,6 +10,10 @@ import time
 import sys
 from pprint import pprint
 
+duolingo_id = -1001455037506
+
+translator = Translator()
+
 translator = Translator()
 
 
@@ -24,6 +28,9 @@ def toportuguese(update, context):
         return
     translated = translator.translate(replied_message.text, dest='pt')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        write_log('topt')
+
 
 # FUNCTION TO TRANSLATE TO JAPANESE
 def tojapanese(update, context):
@@ -34,6 +41,9 @@ def tojapanese(update, context):
         return
     translated = translator.translate(replied_message.text, dest='ja')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        write_log('toja')
+
 
 # FUNCTION TO TRANSLATE TO FRENCH
 
@@ -45,7 +55,8 @@ def tofrench(update, context):
         return
     translated = translator.translate(replied_message.text, dest='fr')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
-
+    if replied_message.chat.id == duolingo_id:
+        write_log('tofr')
 
 # FUNCTION TO TRANSLATE TO ITALIAN
 def toitalian(update, context):
@@ -56,6 +67,9 @@ def toitalian(update, context):
         return
     translated = translator.translate(replied_message.text, dest='it')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        write_log('toit')
+
 
 # FUNCTION TO TRANSLATE TO GERMAN
 def togerman(update, context):
@@ -66,6 +80,9 @@ def togerman(update, context):
         return
     translated = translator.translate(replied_message.text, dest='de')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        write_log('toge')
+
 
 # FUNCTION TO TRANSLATE TO ENGLISH
 def toenglish(update, context):
@@ -76,3 +93,12 @@ def toenglish(update, context):
         return
     translated = translator.translate(replied_message.text, dest='en')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        write_log('toen')
+
+# ESTA FUNCAO SÓ ESTÁ AQUI PQ NÃO SEI IMPORTAR ELA DE OUTRA PASTA
+def write_log(funcao):
+    arquivo_log = open('log_comandos.txt','a')
+    arquivo_log.write(funcao+';'+time.strftime('%d/%m/%Y') +'\n')
+    arquivo_log.close()
+
