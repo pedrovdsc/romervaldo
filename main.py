@@ -56,6 +56,7 @@ dispatcher.add_handler(caps_handler)
 relt_handler = CommandHandler('relt', relt)
 dispatcher.add_handler(relt_handler)
 
+
 ## Language handlers ##
 
 toportuguese_handler = CommandHandler('topt', toportuguese)

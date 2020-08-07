@@ -14,7 +14,8 @@ duolingo_id = -1001455037506
 
 translator = Translator()
 
-# if replied_message.chat.id == duolingo_id:
+translator = Translator()
+
 
 ## TO LANGUAGE FUNCTIONS ##
 
@@ -30,6 +31,7 @@ def toportuguese(update, context):
     if replied_message.chat.id == duolingo_id:
         write_log('topt')
 
+
 # FUNCTION TO TRANSLATE TO JAPANESE
 def tojapanese(update, context):
     replied_message = update.message.reply_to_message
@@ -41,6 +43,7 @@ def tojapanese(update, context):
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
     if replied_message.chat.id == duolingo_id:
         write_log('toja')
+
 
 # FUNCTION TO TRANSLATE TO FRENCH
 
@@ -54,7 +57,6 @@ def tofrench(update, context):
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
     if replied_message.chat.id == duolingo_id:
         write_log('tofr')
-    
 
 # FUNCTION TO TRANSLATE TO ITALIAN
 def toitalian(update, context):
@@ -68,6 +70,7 @@ def toitalian(update, context):
     if replied_message.chat.id == duolingo_id:
         write_log('toit')
 
+
 # FUNCTION TO TRANSLATE TO GERMAN
 def togerman(update, context):
     replied_message = update.message.reply_to_message
@@ -79,6 +82,7 @@ def togerman(update, context):
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
     if replied_message.chat.id == duolingo_id:
         write_log('toge')
+
 
 # FUNCTION TO TRANSLATE TO ENGLISH
 def toenglish(update, context):
@@ -97,3 +101,4 @@ def write_log(funcao):
     arquivo_log = open('log_comandos.txt','a')
     arquivo_log.write(funcao+';'+time.strftime('%d/%m/%Y') +'\n')
     arquivo_log.close()
+

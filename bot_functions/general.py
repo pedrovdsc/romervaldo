@@ -54,3 +54,4 @@ def write_log(funcao):
     arquivo_log = open('log_comandos.txt','a')
     arquivo_log.write(funcao+time.strftime('%d/%m/%Y') +'\n')
     arquivo_log.close()
+
