@@ -9,6 +9,8 @@ import time
 import sys
 from pprint import pprint
 
+duolingo_id = -310622858
+
 
 def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Salve!\
@@ -40,15 +42,9 @@ def caps(update, context):
     
 def relt(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Só um minuto, humano... Já vou enviar...")
-    file2 = open('log_comandos.txt', 'rb')
-    context.bot.send_document(chat_id=update.effective_chat.id, document = file2)
-
-def write_log(funcao):
-    arquivo_log = open('log_comandos.txt','a')
-    arquivo_log.write(funcao+time.strftime('%d/%m/%Y') +'\n')
-    arquivo_log.close()
-    
-    
+    with open('log_comandos.txt', 'rb') as f:
+        context.bot.send_document(chat_id=update.effective_chat.id, document = f)
+        
     
 # Fallback answer
 
