@@ -12,7 +12,7 @@ from telegram.ext import InlineQueryHandler
 from googletrans import Translator
 
 from to_functions.to_functions import toenglish, tofrench, togerman, toitalian, tojapanese, toportuguese
-from bot_functions.general import caps, start, unknown, commands, relt
+from bot_functions.general import caps, start, unknown, commands, relt, magic8ball
 
 import logging
 import time
@@ -55,6 +55,10 @@ dispatcher.add_handler(caps_handler)
 
 relt_handler = CommandHandler('relt', relt)
 dispatcher.add_handler(relt_handler)
+
+magic8ball_handler = CommandHandler('8ball', magic8ball)
+dispatcher.add_handler(magic8ball_handler)
+
 
 
 ## Language handlers ##
