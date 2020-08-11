@@ -43,7 +43,7 @@ def tojapanese(update, context):
         write_log('toja')
         
 # FUNCTION TO TRANSLATE TO JAPANESE
-def tojapanese(update, context):
+def tospanish(update, context):
     replied_message = update.message.reply_to_message
         
     if replied_message.text == '':
