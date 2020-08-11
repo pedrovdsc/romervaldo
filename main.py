@@ -81,7 +81,7 @@ dispatcher.add_handler(togerman_handler)
 toenglish_handler = CommandHandler('toen', toenglish)
 dispatcher.add_handler(toenglish_handler)
 
-tospanish_handler = CommandHandler('tosp', tospanish)
+tospanish_handler = CommandHandler('toes', tospanish)
 dispatcher.add_handler(tospanish_handler)
 
 

@@ -44,18 +44,16 @@ def tojapanese(update, context):
         
 # FUNCTION TO TRANSLATE TO JAPANESE
 def tospanish(update, context):
-	'''
     replied_message = update.message.reply_to_message
         
     if replied_message.text == '':
         context.bot.send_message(chat_id=update.effective_chat.id, text="??")
         return
-    translated = translator.translate(replied_message.text, dest='sp')
+    translated = translator.translate(replied_message.text, dest='es')
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
     if replied_message.chat.id == duolingo_id:
-        write_log('tosp')
-	'''
-	update.message.reply_text(reply_to_message_id=replied_message.message_id,text='\U0001F99E \U0001F336')
+        write_log('toes')
+
 
 
 # FUNCTION TO TRANSLATE TO FRENCH
