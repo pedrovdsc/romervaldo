@@ -11,7 +11,7 @@ from telegram import InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import InlineQueryHandler
 from googletrans import Translator
 
-from to_functions.to_functions import toenglish, tofrench, togerman, toitalian, tojapanese, toportuguese
+from to_functions.to_functions import toenglish, tofrench, togerman, toitalian, tojapanese, toportuguese, tospanish
 from bot_functions.general import caps, start, unknown, commands, relt, magic8ball
 
 import logging
@@ -80,6 +80,9 @@ dispatcher.add_handler(togerman_handler)
 
 toenglish_handler = CommandHandler('toen', toenglish)
 dispatcher.add_handler(toenglish_handler)
+
+tospanish_handler = CommandHandler('tosp', tospanish)
+dispatcher.add_handler(tospanish_handler)
 
 
 ## End of Language Handlers ##
