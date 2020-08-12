@@ -3,11 +3,16 @@ from telegram.ext import Updater
 from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler, Filters
 from telegram import InlineQueryResultArticle, InputTextMessageContent
+import pandas as pd
+import numpy as np
+import datetime
 
 import logging
 import time
 import sys
 from pprint import pprint
+import random
+
 
 duolingo_id = -310622858
 
@@ -27,6 +32,8 @@ def commands(update, context):
         \n/toge - Traduz a frase para o alemão;\
         \n/topt - Traduz a frase para o português\
         \n/toit - Traduz a frase para o italiano\
+		\n/toes - Traduz a frase para o espanhol\
+		\n/stats - mostra os comandos mais executados nos últimos 7 dias\
         \n/caps - FICA TUDO EM CAPSLOCK."
 
     context.bot.send_message(
@@ -45,6 +52,46 @@ def relt(update, context):
     with open('log_comandos.txt', 'rb') as f:
         context.bot.send_document(chat_id=update.effective_chat.id, document = f)
         
+        
+def magic8ball(update, context):
+	context.bot.send_message(chat_id=update.effective_chat.id, text='\U0001F3B1')
+	replied_message = update.message.reply_to_message
+	try:
+		var = random.randint(1,8)
+		if var == 1:
+			answer = "Nem por reza"
+		elif var == 2:
+			answer = "Não, mas na dúvida, tente mais uma vez."
+		elif var == 3:
+			answer = "Saia fora, humano! Eu sou de LINHARES e sei do que eu estou falando."
+		elif var == 4:
+			answer = "Para quem é de Linhares, que nem eu, isso daí não é problema!"
+		elif var == 5:
+			answer = "Quer um conselho? Fuja da Engenharia Elétrica!"
+		elif var == 6:
+			answer = "Passarinho que come pedra, lembra que tem cu depois. Faça, mas com cuidado..."
+		elif var == 7:
+			answer = "Vai lá. Cai de cabeça, humano."
+		elif var == 8:
+			answer = "Pense melhor. O melhor mesmo é não pensar e fazer mesmo."
+		update.message.reply_text(reply_to_message_id=replied_message.message_id,text=answer+'\U0001F3B1')
+		#context.bot.send_message(chat_id=update.effective_chat.id, text=answer)
+	except:
+		print("error")
+		context.bot.send_message(
+       		chat_id=update.effective_chat.id, text="brrrrrrrrrrrr brbrbrbrbrbrbr meu diodo bzzzz esquerdo EXPLODIU! bzbzbzbzzzzz")
+        
+def stats(update,context):
+	context.bot.send_message(chat_id=update.effective_chat.id, text="Comandos executados nos últimos 7 dias:")
+	df = pd.read_csv('log_comandos.txt',sep=';',names=['Comando','Data'])
+	df.Data = df.Data.astype(np.datetime64)-datetime.timedelta(hours=3)
+	df2 = df[df.Data>datetime.datetime.now()-datetime.timedelta(days=7)]
+	context.bot.send_message(chat_id=update.effective_chat.id, text='```'+str(df2.groupby('Comando').count().unstack().loc['Data'].sort_values(ascending=False))+'```', parse_mode=telegram.ParseMode.MARKDOWN_V2)
+
+
+
+
+
     
 # Fallback answer
 
@@ -52,4 +99,5 @@ def relt(update, context):
 def unknown(update, context):
     context.bot.send_message(
         chat_id=update.effective_chat.id, text="Repete aí, ser humano. Entendi não.")
+
 

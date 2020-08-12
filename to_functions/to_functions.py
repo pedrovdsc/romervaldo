@@ -5,7 +5,7 @@ from telegram.ext import MessageHandler, Filters
 from telegram import InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import InlineQueryHandler
 from googletrans import Translator
-from datetime import datetime
+import datetime
 
 import time
 import sys
@@ -41,6 +41,19 @@ def tojapanese(update, context):
     update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
     if replied_message.chat.id == duolingo_id:
         write_log('toja')
+        
+# FUNCTION TO TRANSLATE TO JAPANESE
+def tospanish(update, context):
+    replied_message = update.message.reply_to_message
+        
+    if replied_message.text == '':
+        context.bot.send_message(chat_id=update.effective_chat.id, text="??")
+        return
+    translated = translator.translate(replied_message.text, dest='es')
+    update.message.reply_text(reply_to_message_id=replied_message.message_id,text=translated.text)
+    if replied_message.chat.id == duolingo_id:
+        write_log('toes')
+
 
 
 # FUNCTION TO TRANSLATE TO FRENCH
@@ -96,7 +109,7 @@ def toenglish(update, context):
 
 # ESTA FUNCAO SÓ ESTÁ AQUI PQ NÃO SEI IMPORTAR ELA DE OUTRA PASTA
 def write_log(funcao):
-    now = datetime.now()
+    now = datetime.datetime.now()
     with open('log_comandos.txt', 'a') as f:
         f.write(funcao+';'+now.strftime('%d/%m/%Y %H:%M') +'\n')
 

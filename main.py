@@ -11,8 +11,8 @@ from telegram import InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import InlineQueryHandler
 from googletrans import Translator
 
-from to_functions.to_functions import toenglish, tofrench, togerman, toitalian, tojapanese, toportuguese
-from bot_functions.general import caps, start, unknown, commands, relt
+from to_functions.to_functions import toenglish, tofrench, togerman, toitalian, tojapanese, toportuguese, tospanish
+from bot_functions.general import caps, start, unknown, commands, relt, magic8ball, stats
 
 import logging
 import time
@@ -56,6 +56,13 @@ dispatcher.add_handler(caps_handler)
 relt_handler = CommandHandler('relt', relt)
 dispatcher.add_handler(relt_handler)
 
+magic8ball_handler = CommandHandler('8ball', magic8ball)
+dispatcher.add_handler(magic8ball_handler)
+
+stats_handler = CommandHandler('stats', stats)
+dispatcher.add_handler(stats_handler)
+
+
 
 ## Language handlers ##
 
@@ -76,6 +83,9 @@ dispatcher.add_handler(togerman_handler)
 
 toenglish_handler = CommandHandler('toen', toenglish)
 dispatcher.add_handler(toenglish_handler)
+
+tospanish_handler = CommandHandler('toes', tospanish)
+dispatcher.add_handler(tospanish_handler)
 
 
 ## End of Language Handlers ##
