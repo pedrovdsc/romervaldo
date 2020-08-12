@@ -3,6 +3,9 @@ from telegram.ext import Updater
 from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler, Filters
 from telegram import InlineQueryResultArticle, InputTextMessageContent
+import pandas as pd
+import numpy as np
+import datetime
 
 import logging
 import time
@@ -29,6 +32,8 @@ def commands(update, context):
         \n/toge - Traduz a frase para o alemão;\
         \n/topt - Traduz a frase para o português\
         \n/toit - Traduz a frase para o italiano\
+		\n/toes - Traduz a frase para o espanhol\
+		\n/stats - mostra os comandos mais executados nos últimos 7 dias\
         \n/caps - FICA TUDO EM CAPSLOCK."
 
     context.bot.send_message(
@@ -77,6 +82,12 @@ def magic8ball(update, context):
        		chat_id=update.effective_chat.id, text="brrrrrrrrrrrr brbrbrbrbrbrbr meu diodo bzzzz esquerdo EXPLODIU! bzbzbzbzzzzz")
         
 
+def stats(update,context):
+	context.bot.send_message(chat_id=update.effective_chat.id, text="Comandos executados nos últimos 7 dias:")
+	df = pd.read_csv('log_comandos.txt',sep=';',names=['Comando','Data'])
+	df.Data = df.Data.astype(np.datetime64)-datetime.timedelta(hours=3)
+	df2 = df[df.Data>datetime.datetime.now()-datetime.timedelta(days=7)]
+	context.bot.send_message(chat_id=update.effective_chat.id, text='```'+str(df2.groupby('Comando').count().unstack().loc['Data'].sort_values(ascending=False))+'```', parse_mode=telegram.ParseMode.MARKDOWN_V2)
 
 
 
