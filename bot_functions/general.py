@@ -81,12 +81,14 @@ def magic8ball(update, context):
 		context.bot.send_message(
        		chat_id=update.effective_chat.id, text="brrrrrrrrrrrr brbrbrbrbrbrbr meu diodo bzzzz esquerdo EXPLODIU! bzbzbzbzzzzz")
         
+
 def stats(update,context):
 	context.bot.send_message(chat_id=update.effective_chat.id, text="Comandos executados nos últimos 7 dias:")
 	df = pd.read_csv('log_comandos.txt',sep=';',names=['Comando','Data'])
 	df.Data = df.Data.astype(np.datetime64)-datetime.timedelta(hours=3)
 	df2 = df[df.Data>datetime.datetime.now()-datetime.timedelta(days=7)]
 	context.bot.send_message(chat_id=update.effective_chat.id, text='```'+str(df2.groupby('Comando').count().unstack().loc['Data'].sort_values(ascending=False))+'```', parse_mode=telegram.ParseMode.MARKDOWN_V2)
+
 
 
 
