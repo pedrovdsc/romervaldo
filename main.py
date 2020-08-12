@@ -14,6 +14,7 @@ from googletrans import Translator
 from to_functions.to_functions import toenglish, tofrench, togerman, toitalian, tojapanese, toportuguese, tospanish
 from bot_functions.general import caps, start, unknown, commands, relt, magic8ball, stats
 
+
 import logging
 import time
 import sys
@@ -61,7 +62,6 @@ dispatcher.add_handler(magic8ball_handler)
 
 stats_handler = CommandHandler('stats', stats)
 dispatcher.add_handler(stats_handler)
-
 
 
 ## Language handlers ##

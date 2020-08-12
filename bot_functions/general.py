@@ -81,6 +81,7 @@ def magic8ball(update, context):
 		context.bot.send_message(
        		chat_id=update.effective_chat.id, text="brrrrrrrrrrrr brbrbrbrbrbrbr meu diodo bzzzz esquerdo EXPLODIU! bzbzbzbzzzzz")
         
+
 def stats(update,context):
 	try:
 		df = pd.read_csv('log_comandos.txt',sep=';',names=['Comando','Data'])
@@ -92,6 +93,7 @@ def stats(update,context):
 	except:
 		print("error")
 		context.bot.send_message(chat_id=update.effective_chat.id, text="brrrrrrrrrrrr brbrbrbrbrbrbr meu diodo bzzzz esquerdo EXPLODIU! bzbzbzbzzzzz")
+
 
 
 
