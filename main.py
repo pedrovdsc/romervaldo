@@ -11,9 +11,11 @@ from telegram import InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import InlineQueryHandler
 from googletrans import Translator
 
-from to_functions.to_functions import toenglish, tofrench, togerman, toitalian, tojapanese, toportuguese, tospanish
-from bot_functions.general import caps, start, unknown, commands, relt, magic8ball, stats
-
+from to_functions.to_functions import (toenglish, tofrench, togerman, toitalian,
+    tojapanese, toportuguese, tospanish)
+from bot_functions.general import (caps, start, unknown, commands, relt, magic8ball,
+    stats)
+from to_functions.inline_functions import inline_to_language
 
 import logging
 import time
@@ -87,8 +89,14 @@ dispatcher.add_handler(toenglish_handler)
 tospanish_handler = CommandHandler('toes', tospanish)
 dispatcher.add_handler(tospanish_handler)
 
-
 ## End of Language Handlers ##
+
+## Inline translations
+
+inline_to_language_handler = InlineQueryHandler(inline_to_language)
+dispatcher.add_handler(inline_to_language_handler)
+
+## End of Inline translations
 
 # Por algum motivo ele tem que ficar no final
 unknown_handler = MessageHandler(Filters.command, unknown)
