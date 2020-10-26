@@ -13,6 +13,7 @@ import sys
 from pprint import pprint
 import random
 
+import requests
 
 duolingo_id = -310622858
 
@@ -81,6 +82,13 @@ def magic8ball(update, context):
 		context.bot.send_message(
        		chat_id=update.effective_chat.id, text="brrrrrrrrrrrr brbrbrbrbrbrbr meu diodo bzzzz esquerdo EXPLODIU! bzbzbzbzzzzz")
         
+
+def catgirl(update,context):
+	r = requests.api.get('https://nekos.moe/api/v1/random/image?nsfw=false')
+	print(r.status_code)
+	url = 'https://nekos.moe/image/'+r.json()['images'][0]['id']
+	update.message.reply_photo(url)
+
 
 def stats(update,context):
 	context.bot.send_message(chat_id=update.effective_chat.id, text="Comandos executados nos últimos 7 dias:")

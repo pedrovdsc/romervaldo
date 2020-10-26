@@ -13,7 +13,7 @@ from googletrans import Translator
 
 from to_functions.to_functions import (toenglish, tofrench, togerman, toitalian,
     tojapanese, toportuguese, tospanish)
-from bot_functions.general import (caps, start, unknown, commands, relt, magic8ball,
+from bot_functions.general import (caps, start, unknown, commands, relt, magic8ball, catgirl,
     stats)
 from to_functions.inline_functions import inline_to_language
 
@@ -61,6 +61,9 @@ dispatcher.add_handler(relt_handler)
 
 magic8ball_handler = CommandHandler('8ball', magic8ball)
 dispatcher.add_handler(magic8ball_handler)
+
+catgirl = CommandHandler('catgirl', catgirl)
+dispatcher.add_handler(catgirl)
 
 stats_handler = CommandHandler('stats', stats)
 dispatcher.add_handler(stats_handler)
