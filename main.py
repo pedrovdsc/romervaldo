@@ -11,75 +11,56 @@ from telegram import InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import InlineQueryHandler
 from googletrans import Translator
 
-from to_functions.to_functions import toenglish, tofrench, togerman, toitalian, tojapanese, toportuguese
-from bot_functions.general import caps, start, unknown, commands
+from to_functions import toen, tofr, toge, toit, toja, topt
+from general import caps, start, unknown, commands,catgirl,magic8ball
 
 import logging
 import time
 import sys
 from pprint import pprint
 
-TOKEN = sys.argv[1]
-
-updater = Updater(token=TOKEN, use_context=True)
-dispatcher = updater.dispatcher
-
-logging.basicConfig(filename = 'log_comandos.log', filemode = 'a', level = logging.INFO, format = '%(message)s;%(asctime)s', datefmt='%d/%m/%Y')
-duolingo_id = -1001455037506
-
-translator = Translator()
-
-def debug_message(message):
-    print('####################################')
-    print(message.date)
-    print(f'username: {message.from_user.username}')
-    pprint(message.from_user.name)
-    print(f'id: {message.from_user.id}')
-    print(f'chat_id: {message.chat_id}')
-    print(f'message_id: {message.message_id}')
-    print('Text: \n' +message.text)
-    print('####################################')
-
-start_handler = CommandHandler('start', start)
-dispatcher.add_handler(start_handler)
-
-## Não sei oq isso faz ainda.
-updater.start_polling()
-
-## General handlers
-
-commands_handler = CommandHandler('commands', commands)
-dispatcher.add_handler(commands_handler)
-
-caps_handler = CommandHandler('caps', caps)
-dispatcher.add_handler(caps_handler)
 
 ## Language handlers ##
 
-toportuguese_handler = CommandHandler('topt', toportuguese)
-dispatcher.add_handler(toportuguese_handler)
+def wrapper_commandHandler(command,dispatcher):
+    dispatcher.add_handler(CommandHandler(command.__name__, command))
+    print(command.__name__,"foi embalada!")
 
-tofrench_handler = CommandHandler('tofr', tofrench)
-dispatcher.add_handler(tofrench_handler)
-
-toitalian_handler = CommandHandler('toit', toitalian)
-dispatcher.add_handler(toitalian_handler)
-
-tojapanese_handler = CommandHandler('toja', tojapanese)
-dispatcher.add_handler(tojapanese_handler)
-
-togerman_handler = CommandHandler('toge', togerman)
-dispatcher.add_handler(togerman_handler)
-
-toenglish_handler = CommandHandler('toen', toenglish)
-dispatcher.add_handler(toenglish_handler)
+def main():
+    # Create the Updater and pass it your bot's token.
 
 
-## End of Language Handlers ##
+    # início do código
 
-# Por algum motivo ele tem que ficar no final
-unknown_handler = MessageHandler(Filters.command, unknown)
-dispatcher.add_handler(unknown_handler)
+    TOKEN = sys.argv[1]
+
+    updater = Updater(token=TOKEN, use_context=True)
+    dispatcher = updater.dispatcher
 
 
-print ('Bot ligado')
+    logging.basicConfig(filename = 'log_comandos.log',
+                        filemode = 'a', level = logging.INFO,
+                        format = '%(message)s;%(asctime)s', datefmt='%d/%m/%Y')
+    duolingo_id = -1001455037506
+
+    # inicializando todos os comandos
+
+    print ('Bot ligado')
+
+    commandList = [start,
+                    commands,caps,catgirl,magic8ball,
+                    toen,topt,toja,toit,toge,tofr]
+    for command in commandList:
+        wrapper_commandHandler(command,dispatcher)
+
+    # Por algum motivo ele tem que ficar no final
+    unknown_handler = MessageHandler(Filters.command, unknown)
+    dispatcher.add_handler(unknown_handler)
+
+    # Start the Bot
+    updater.start_polling()
+
+if __name__ == '__main__':
+    main()
+
+
