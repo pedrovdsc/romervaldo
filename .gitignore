@@ -25,3 +25,5 @@ token.txt
 .vscode
 __pycache__
 *.pyc
+tokens.txt
+log_comandos.txt
